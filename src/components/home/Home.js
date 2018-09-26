@@ -35,7 +35,11 @@ export default class Home extends Component {
     render() {
         return (
             <View>
-                {this.renderNavigation()}
+                <View style={{width:wp('100%'),alignItems:'center',marginTop:hp('2%')}}>
+                    <Image source={require('../../assets/logo/logo.png')} resizeMode={'contain'} style={{
+                        height: hp('8%')
+                    }} />
+                </View>
                 <BodyHome></BodyHome>
                 <BottomNavigation></BottomNavigation>
             </View>
