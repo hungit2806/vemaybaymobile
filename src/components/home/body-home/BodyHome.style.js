@@ -6,9 +6,11 @@ export const stylesBodyHome = StyleSheet.create({
         height: hp('80%')-StatusBar.currentHeight,
         width: wp('100%'),
         alignItems: 'center',
+        position:"absolute",
+        top:hp('14%')
     },
     containerFromTo:{
-        height: hp('35%'),
+        height: hp('30%'),
         width: wp('95%'),
         borderWidth: 1,
         borderRadius: 12,
@@ -19,13 +21,12 @@ export const stylesBodyHome = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 8,
-        marginTop: 10,
-        backgroundColor:'#f26222',
+        backgroundColor:'#ffffff',
         flexDirection:'row',
         
     },
     containerFrom:{
-        height: hp('35%'),
+        height: hp('30%'),
         width: wp('47.5%'),
         flexDirection: 'column',
         textAlign:'center',
@@ -35,7 +36,7 @@ export const stylesBodyHome = StyleSheet.create({
         justifyContent: 'center',
     },
     containerTo:{
-        height: hp('35%'),
+        height: hp('30%'),
         width: wp('47.5%'),
         flexDirection: 'column',
         textAlign:'center',
@@ -45,18 +46,18 @@ export const stylesBodyHome = StyleSheet.create({
         justifyContent: 'center',
     },
     txtTitle : {
-        color:'#ffffff',
+        color:'#f26222',
         fontWeight: 'bold',
         fontSize: hp('3%'),
-        borderBottomColor: '#ffffff',
+        borderBottomColor: '#f26222',
         borderBottomWidth: 1,
     },
     txtMS:{
-        color:'#ffffff',
+        color:'#f26222',
         fontSize: hp('7%'),
     },
     txtTen:{
-        color:'#ffffff',
+        color:'#f26222',
         fontSize: hp('3%'),
     },
     containerDateStart:{
@@ -73,7 +74,8 @@ export const stylesBodyHome = StyleSheet.create({
         elevation: 8,
         marginTop: 10,
         marginRight:wp("1.25%"),
-        backgroundColor:'#ffffff'
+        backgroundColor:'#ffffff',
+        flexDirection:'column'
     },
     containerDateEnd:{
         height: hp('10%'),
@@ -90,5 +92,95 @@ export const stylesBodyHome = StyleSheet.create({
         marginTop: 10,
         backgroundColor:'#ffffff',
         marginLeft:wp("1.25%"),
+        flexDirection:'column'
+    },
+    btnOneTripOn:{
+        height:hp('5%'),
+        width:wp('42.5%'),
+        backgroundColor:'#f26222',
+        borderColor:'#f26222',
+        borderWidth:1,
+        textAlign:"center",
+        borderRadius:12
+    },
+    btnOneTripOff:{
+        height:hp('5%'),
+        width:wp('42.5%'),
+        backgroundColor:'#ffffff',
+        borderColor:'#f26222',
+        borderWidth:1,
+        textAlign:"center",
+        borderRadius:12
+    },
+    txtOneTripOn:{
+        color:'#ffffff',
+        textAlign:"center",
+        fontSize:hp('3%')
+    },
+    txtOneTripOff:{
+        color:'#f26222',
+        textAlign:"center",
+        fontSize:hp('3%')
+    },
+    txtTitleDate:{
+        color:'#ffffff',
+        fontSize:hp('2.5%'),
+        textAlign:'center',
+        fontWeight:"bold",
+        borderBottomColor:"#f26222",
+        borderBottomWidth:1,
+        backgroundColor: "#f26222"
+    },
+    txtDate:{
+        color:'#f26222',
+        fontSize:hp('4%'),
+        textAlign:'center',
+    },
+    containerPeople:{
+        height: hp('18%'),
+        width: wp('95%'),
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: '#ddd',
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 8,
+        marginTop: 10,
+        backgroundColor:'#ffffff',
+        marginLeft:wp("1.25%"),
+        flexDirection:'row',
+    },
+    containerAdult:{
+        height: hp('22%'),
+        width: wp('31.6%'),
+        alignItems:"center"
+    },
+    containerAdultTitle:{
+        width: wp('31.6%'),
+        backgroundColor:'#f26222',
+        flexDirection:'row',
+    },
+    containerTxtTitle:{
+        flexDirection:'column'
+    },
+    btnNumber:{
+        width:hp('10%'),
+        height:hp('10%'),
+        borderRadius:hp('4%'),
+        borderColor:'#f26222',
+        borderWidth:1,
+        textAlign:"center",
+        alignItems:"center",
+        marginTop:5
+    },
+    txtNumber:{
+        color:'#f26222',
+        fontSize:hp('5%'),  
+        textAlign:"center", 
+        alignItems:"center",
+        lineHeight:hp('10%')
     }
 });

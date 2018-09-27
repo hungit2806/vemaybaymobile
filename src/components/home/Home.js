@@ -35,9 +35,9 @@ export default class Home extends Component {
     render() {
         return (
             <View>
-                <View style={{width:wp('100%'),alignItems:'center',marginTop:hp('2%')}}>
-                    <Image source={require('../../assets/logo/logo.png')} resizeMode={'contain'} style={{
-                        height: hp('8%')
+                <View style={{width:wp('100%'),alignItems:'center'}}>
+                    <Image source={require('../../assets/images/background-search.jpg')} resizeMode={'cover'} style={{
+                        width: wp('100%'), height: hp('35%')
                     }} />
                 </View>
                 <BodyHome></BodyHome>
