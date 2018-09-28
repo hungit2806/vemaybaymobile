@@ -7,7 +7,7 @@ export const stylesBodyHome = StyleSheet.create({
         width: wp('100%'),
         alignItems: 'center',
         position:"absolute",
-        top:hp('14%')
+        top:hp('14%'),
     },
     containerFromTo:{
         height: hp('30%'),
@@ -46,18 +46,18 @@ export const stylesBodyHome = StyleSheet.create({
         justifyContent: 'center',
     },
     txtTitle : {
-        color:'#f26222',
+        color:'#353535',
         fontWeight: 'bold',
         fontSize: hp('3%'),
         borderBottomColor: '#f26222',
         borderBottomWidth: 1,
     },
     txtMS:{
-        color:'#f26222',
+        color:'#353535',
         fontSize: hp('7%'),
     },
     txtTen:{
-        color:'#f26222',
+        color:'#353535',
         fontSize: hp('3%'),
     },
     containerDateStart:{
@@ -131,8 +131,22 @@ export const stylesBodyHome = StyleSheet.create({
         borderBottomWidth:1,
         backgroundColor: "#f26222"
     },
+    txtTitleDateOff:{
+        color:'#ffffff',
+        fontSize:hp('2.5%'),
+        textAlign:'center',
+        fontWeight:"bold",
+        borderBottomColor:"#f26222",
+        borderBottomWidth:1,
+        backgroundColor: "#FA8655"
+    },
     txtDate:{
-        color:'#f26222',
+        color:'#353535',
+        fontSize:hp('4%'),
+        textAlign:'center',
+    },
+    txtDateOff:{
+        color:'#9e9e9e',
         fontSize:hp('4%'),
         textAlign:'center',
     },
@@ -177,10 +191,39 @@ export const stylesBodyHome = StyleSheet.create({
         marginTop:5
     },
     txtNumber:{
-        color:'#f26222',
+        color:'#353535',
         fontSize:hp('5%'),  
         textAlign:"center", 
         alignItems:"center",
         lineHeight:hp('10%')
+    },
+    containerHeaderModelLocation:{
+        width:wp('100%'),
+        height:hp('8%'),
+        backgroundColor:'#f26222',
+        textAlign:"center",
+        alignItems:"center"
+    },
+    txtTitleModel:{
+        textAlign:"center",
+        fontSize:hp('4%'),
+        color:'#ffffff',
+        lineHeight:hp('8%')
+    },
+    containerInputText :{
+        height:hp('7%'),
+        width:wp('97%'),
+        borderColor:'#f26222',
+        borderWidth:1,
+        borderRadius:12,
+        flexDirection:'row',
+        alignItems:"center",
+        marginTop:hp('2%')
+    },
+    inputText:{
+        height:hp('7%'),
+        width:hp('82%'),
+        fontSize:hp('3%'),
+        color:'#f26222'
     }
 });

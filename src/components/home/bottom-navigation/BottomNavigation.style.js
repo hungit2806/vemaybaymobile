@@ -8,7 +8,9 @@ export const stylesBottomNavigation = StyleSheet.create({
         backgroundColor: 'white',  
         flexDirection: 'row',
         position:"absolute",
-        top:hp('90%')-StatusBar.currentHeight   
+        top:hp('90%')-StatusBar.currentHeight,
+        borderTopWidth: 1,
+        borderTopColor: '#f26222',
     },
     leftContainer: {
         height: hp('10%'),

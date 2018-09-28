@@ -5,6 +5,6 @@ export const stylesNavigation = StyleSheet.create({
         height: hp('10%'),
         width: wp('100%'),
         backgroundColor: 'white',  
-        flexDirection: 'row'     
+        flexDirection: 'row'  
     },
 })

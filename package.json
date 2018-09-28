@@ -10,11 +10,16 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-react-native": "^4.0.0",
+    "moment": "^2.22.2",
     "react": "16.4.1",
     "react-native": "^0.55.4",
+    "react-native-modal-datetime-picker": "^6.0.0",
+    "react-native-popup-dialog": "^0.15.0",
     "react-native-responsive-screen": "^1.1.9",
     "react-native-svg": "^7.0.3",
     "react-native-svg-uri": "^1.2.3",
+    "react-native-textinput-effects": "^0.4.2",
+    "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.16.0"
   },
   "devDependencies": {
