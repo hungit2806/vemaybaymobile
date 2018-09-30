@@ -10,11 +10,16 @@ export default class BottomNavigation extends Component {
             choosePage: PAGE_TIMKIEM
         }
     }
-    
+    setPage(type){
+        this.setState({
+            choosePage:type
+        })
+        this.props.setPage(type)
+    }
     render() {
         return (
             <View style={stylesBottomNavigation.container}>
-                <TouchableOpacity onPress={() => { this.setState({ choosePage: PAGE_TIMKIEM }) }}>
+                <TouchableOpacity onPress={this.setPage.bind(this,PAGE_TIMKIEM)}>
                     {
                         this.state.choosePage === PAGE_TIMKIEM ?
                             <View style={stylesBottomNavigation.leftContainer}>
@@ -31,7 +36,7 @@ export default class BottomNavigation extends Component {
                             </View>
                     }
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { this.setState({ choosePage: PAGE_TIMVERE }) }}>
+                <TouchableOpacity onPress={this.setPage.bind(this,PAGE_TIMVERE)}>
                     {
                         this.state.choosePage === PAGE_TIMKIEM ?
                             <View style={stylesBottomNavigation.leftContainer}>

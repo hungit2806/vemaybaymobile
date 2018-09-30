@@ -3,10 +3,11 @@ import { stylesBodyHome } from './BodyHome.style'
 import { View, Text, Image, TouchableOpacity, Modal, TextInput, ScrollView } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { DataAirport, RelationshipAirport } from '../../../data-mock/data-mock'
-import { MODAL_FROM, MODAL_TO } from '../../../constants/model-constants'
+import { MODAL_FROM, MODAL_TO, MODAL_ADULT, MODAL_CHILD, MODAL_BABY } from '../../../constants/model-constants'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Moment from 'moment';
+
 var mienBac = DataAirport.NoiDia.MienBac;
 var mienTrung = DataAirport.NoiDia.MienTrung;
 var mienNam = DataAirport.NoiDia.MienNam;
@@ -14,6 +15,7 @@ var dongNamA = DataAirport.QuocTe.DongNamA;
 var dongBacA = DataAirport.QuocTe.DongBacA;
 var chauAu = DataAirport.QuocTe.ChauAu;
 var chauUc = DataAirport.QuocTe.ChauUc;
+
 export default class BodyHome extends Component {
     constructor(props) {
         super(props);
@@ -26,40 +28,84 @@ export default class BodyHome extends Component {
             valueTo: 'Sài Gòn',
             MSFrom: 'HAN',
             MSTo: 'SGN',
-            dateFrom:new Date(),
-            dateTo:new Date(),
+            dateFrom: new Date(),
+            dateTo: new Date(),
             textSearch: '',
             isDateTimePickerVisible: false,
-            isDateFrom : true
+            isDateFrom: true,
+            numberAdult: 1,
+            numberChild: 0,
+            numberBaby: 0
         }
     }
     _showDateTimePicker = (type) => {
         this.setState({ isDateTimePickerVisible: true })
-        this.setState({isDateFrom:type})
+        this.setState({ isDateFrom: type })
     }
 
     _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
     _handleDatePicked = (date) => {
         console.log('A date has been picked: ', date);
-        if(this.state.isDateFrom){
+        if (this.state.isDateFrom) {
             this.setState({
-                dateFrom:date
+                dateFrom: date
             });
-        }else{
+        } else {
             this.setState({
-                dateTo:date
+                dateTo: date
             });
         }
         this._hideDateTimePicker();
     };
+    setPerson(type, number) {
+        if (type === MODAL_ADULT) {
+            this.setState({
+                numberAdult:number
+            })
+        }else if (type === MODAL_CHILD) {
+            this.setState({
+                numberChild:number
+            })
+        }else{
+            this.setState({
+                numberBaby:number
+            })
+        }
+        this.setState({
+            modalVisible:false
+        })
+    }
+    renderNumber(type) {
+        var numberPerson = []
+        var prefix = ''
+        var n = 0;
+        if (type === MODAL_ADULT) {
+            prefix = 'Người Lớn'
+            n = 1
+        } else if (type === MODAL_CHILD) {
+            prefix = 'Trẻ Em'
+        } else {
+            prefix = 'Em Bé'
+        }
+        for (var i = n; i < 15; i++) {
+            numberPerson.push(
+                <TouchableOpacity onPress={this.setPerson.bind(this, type,i)}>
+                    <View style={{ borderBottomColor: '#d2d2d2', height: hp('8%'), width: wp('80%'), borderBottomWidth: 1 }}>
+                        <Text style={{lineHeight:hp('8%'), marginLeft:wp("3%"),fontSize:hp('3%')}}>{i} {prefix}</Text>
+                    </View>
+                </TouchableOpacity>
+            )
+        }
+        return numberPerson;
+    }
     renderModel() {
         if (this.state.typeModal === MODAL_FROM || this.state.typeModal === MODAL_TO) {
             return (
-                <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+                <View style={{ flexDirection: 'column', alignItems: 'center', backgroundColor: '#ffffff' }}>
                     <View style={stylesBodyHome.containerHeaderModelLocation}>
                         <Text style={stylesBodyHome.txtTitleModel}>{this.state.typeModal === MODAL_FROM ? "Điểm Đi" : "Điểm Đến"}</Text>
-                        <TouchableOpacity onPress={() => { this.setState({ modalVisible: false }) }} style={{ height: hp('5%'), marginLeft: wp('1%'), position: 'absolute', left: 0, marginTop: hp('1.5%') }}>
+                        <TouchableOpacity onPress={() => { this.setState({ modalVisible: false }) }} style={{ height: hp('5%'), marginLeft: wp('1%'), position: 'absolute', left: 0, marginTop: hp('0.5%') }}>
                             <Icon name="close" size={hp('5%')} color="#ffffff"></Icon>
                         </TouchableOpacity>
                     </View>
@@ -79,13 +125,42 @@ export default class BodyHome extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <ScrollView style={{ height: hp("70%"), width: wp("100%") }}>
+                    <ScrollView style={{ height: hp("75%"), width: wp("100%") }}>
                         <View style={{ flexDirection: 'column' }}>
                             {this.state.locationVN ? this.renderNoiDia(this.state.typeModal) : this.renderQuocTe(this.state.typeModal)}
                         </View>
                     </ScrollView>
                 </View>
             )
+        } else {
+            var title = 'Số Lượng Người Lớn'
+            if (this.state.typeModal === MODAL_ADULT) {
+                title = 'Số Lượng Người Lớn'
+            } else if (this.state.typeModal === MODAL_CHILD) {
+                title = 'Số Lượng Trẻ Em'
+            } else {
+                title = 'Số Lượng Em Bé'
+            }
+            return (
+                <View style={stylesBodyHome.containerModalSelect}>
+                    <View style={stylesBodyHome.containerModal}>
+                        <View style={stylesBodyHome.containerHeaderModelLocation}>
+                            <Text style={stylesBodyHome.txtTitleModalPerson}>{title}</Text>
+                            <TouchableOpacity onPress={() => { this.setState({ modalVisible: false }) }} style={{ height: hp('5%'), marginLeft: wp('1%'), position: 'absolute', left: 0, marginTop: hp('0.5%') }}>
+                                <Icon name="close" size={hp('5%')} color="#ffffff"></Icon>
+                            </TouchableOpacity>
+                        </View>
+                        <ScrollView style={{ width: wp('80%'), height: hp('62%') }}>
+                            <View style={{ flexDirection: 'column' }}>
+                                <View >
+                                    {this.renderNumber(this.state.typeModal)}
+                                </View>
+                            </View>
+                        </ScrollView>
+                    </View>
+                </View>
+            )
+
         }
     }
     chooseLocation(type, Ten, Ma) {
@@ -150,23 +225,34 @@ export default class BodyHome extends Component {
             locationVN: type
         })
     }
-    setChangeAroundTrip(){
+    setChangeAroundTrip() {
         var valueFrom = this.state.valueFrom
         var MSFrom = this.state.MSFrom
         this.setState({
             valueFrom: this.state.valueTo,
             MSFrom: this.state.MSTo,
-            valueTo:valueFrom,
-            MSTo:MSFrom
+            valueTo: valueFrom,
+            MSTo: MSFrom
         })
     }
+    goToResult(){
+        const { navigate } = this.props.navigation;
+        let aroundTrip = ''
+        if(!this.state.onetrip){
+            aroundTrip = Moment(this.state.dateTo).format('DDMMYYYY')+'-';
+        } 
+        var requestParam = this.state.MSFrom+'-'+this.state.MSTo+'-'+Moment(this.state.dateFrom).format('DDMMYYYY')+
+        '-'+aroundTrip+this.state.numberAdult+'-'+
+        this.state.numberChild+'-'+this.state.numberBaby
+        navigate('ResultSearch',requestParam)
+    }
     render() {
-        console.log("aaaaaaaa")
+       
         return (
             <View style={stylesBodyHome.container}>
                 <Modal
+                    transparent
                     animationType="slide"
-                    transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {
                         this.setModalVisible(false)
@@ -174,9 +260,10 @@ export default class BodyHome extends Component {
                     {this.renderModel(this.state.typeModal)}
                 </Modal>
                 <View style={stylesBodyHome.containerFromTo}>
-                    <TouchableOpacity style={{height: hp('6%'), width: hp('6%'), position: 'absolute', top: hp('12%'), left: wp('47.5%') - hp('3%'), zIndex: 10}} onPress={this.setChangeAroundTrip.bind(this)}>
+                    <TouchableOpacity style={{ height: hp('6%'), width: hp('6%'), position: 'absolute', top: hp('12%'), left: wp('47.5%') - hp('3%'), zIndex: 10 }} onPress={this.setChangeAroundTrip.bind(this)}>
                         <View style={{
-                        height: hp('6%'), width: hp('6%')}}>
+                            height: hp('6%'), width: hp('6%')
+                        }}>
                             <Image source={require('../../../assets/icons/world.png')} resizeMode={'contain'} style={{
                                 height: hp('6%'), width: hp('6%')
                             }} />
@@ -208,13 +295,13 @@ export default class BodyHome extends Component {
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity onPress={this._showDateTimePicker.bind(this,true)}>
+                    <TouchableOpacity onPress={this._showDateTimePicker.bind(this, true)}>
                         <View style={stylesBodyHome.containerDateStart} >
                             <Text style={stylesBodyHome.txtTitleDate}>Ngày Đi</Text>
                             <Text style={stylesBodyHome.txtDate}>{Moment(this.state.dateFrom).format('DD/MM/YYYY')}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity disabled={this.state.onetrip} onPress={this._showDateTimePicker.bind(this,false)}>
+                    <TouchableOpacity disabled={this.state.onetrip} onPress={this._showDateTimePicker.bind(this, false)}>
                         <View style={stylesBodyHome.containerDateEnd}>
                             <Text style={!this.state.onetrip ? stylesBodyHome.txtTitleDate : stylesBodyHome.txtTitleDateOff}>Ngày Về</Text>
                             <Text style={!this.state.onetrip ? stylesBodyHome.txtDate : stylesBodyHome.txtDateOff}>{Moment(this.state.dateTo).format('DD/MM/YYYY')}</Text>
@@ -223,7 +310,7 @@ export default class BodyHome extends Component {
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <View style={stylesBodyHome.containerPeople}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => { this.setModalVisible(true, MODAL_ADULT); }}>
                             <View style={stylesBodyHome.containerAdult}>
                                 <View style={stylesBodyHome.containerAdultTitle}>
                                     <Image source={require('../../../assets/icons/employee.png')} resizeMode={'contain'} style={{
@@ -235,11 +322,11 @@ export default class BodyHome extends Component {
                                     </View>
                                 </View>
                                 <View style={stylesBodyHome.btnNumber}>
-                                    <Text style={stylesBodyHome.txtNumber}>1</Text>
+                                    <Text style={stylesBodyHome.txtNumber}>{this.state.numberAdult}</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => { this.setModalVisible(true, MODAL_CHILD); }}>
                             <View style={stylesBodyHome.containerAdult}>
                                 <View style={stylesBodyHome.containerAdultTitle}>
                                     <Image source={require('../../../assets/icons/boy.png')} resizeMode={'contain'} style={{
@@ -251,11 +338,11 @@ export default class BodyHome extends Component {
                                     </View>
                                 </View>
                                 <View style={stylesBodyHome.btnNumber}>
-                                    <Text style={stylesBodyHome.txtNumber}>0</Text>
+                                    <Text style={stylesBodyHome.txtNumber}>{this.state.numberChild}</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => { this.setModalVisible(true, MODAL_BABY); }}>
                             <View style={stylesBodyHome.containerAdult}>
                                 <View style={stylesBodyHome.containerAdultTitle}>
                                     <Image source={require('../../../assets/icons/baby-boy.png')} resizeMode={'contain'} style={{
@@ -267,13 +354,13 @@ export default class BodyHome extends Component {
                                     </View>
                                 </View>
                                 <View style={stylesBodyHome.btnNumber}>
-                                    <Text style={stylesBodyHome.txtNumber}>0</Text>
+                                    <Text style={stylesBodyHome.txtNumber}>{this.state.numberBaby}</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
                     </View>
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={this.goToResult.bind(this)}>
                     <View style={{ height: hp('7%'), width: wp('95%'), borderRadius: 12, backgroundColor: '#f26222', marginTop: hp('2%') }}>
                         <Text style={{ textAlign: 'center', color: '#ffffff', fontSize: hp('4%'), fontWeight: 'bold', marginTop: hp('0.5%') }}>TÌM KIẾM</Text>
                     </View>
@@ -283,8 +370,8 @@ export default class BodyHome extends Component {
                     onConfirm={this._handleDatePicked}
                     onCancel={this._hideDateTimePicker}
                     format='DD/MM/YYYY'
-                    date={this.state.isDateFrom?this.state.dateFrom:this.state.dateTo}
-                    minimumDate={this.state.isDateFrom?new Date():this.state.dateFrom}
+                    date={this.state.isDateFrom ? this.state.dateFrom : this.state.dateTo}
+                    minimumDate={this.state.isDateFrom ? new Date() : this.state.dateFrom}
                 />
             </View>
         )
