@@ -1,4 +1,4 @@
-package com.myshop;
+package com.windstudio.baymo;
 
 import android.app.Application;
 
