@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "895225135453",
+    "firebase_url": "https://notification-baymo.firebaseio.com",
+    "project_id": "notification-baymo",
+    "storage_bucket": "notification-baymo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895225135453:android:6501b42799a8fd81",
+        "android_client_info": {
+          "package_name": "com.windstudio.baymo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895225135453-8kcso0p4dgc53652njtbjouait63o12g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC77gjdd6xaSib0BBPXtqm5yGlc992HpO4"
+        },
+        {
+          "current_key": "AIzaSyC77gjdd6xaSib0BBPXtqm5yGlc992HpO4"
+        },
+        {
+          "current_key": "AIzaSyC77gjdd6xaSib0BBPXtqm5yGlc992HpO4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
