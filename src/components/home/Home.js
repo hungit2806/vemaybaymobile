@@ -4,6 +4,7 @@ import BottomNavigation from './bottom-navigation/BottomNavigation';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { stylesNavigation } from './Home.style'
 import BodyHome from './body-home/BodyHome';
+import MonthCheap from './body-home/MonthCheap';
 import { PAGE_TIMKIEM } from '../../constants/page-constants'
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -35,7 +36,7 @@ export default class Home extends Component {
                         width: wp('100%'), height: hp('35%')
                     }} />
                 </View>
-                <BodyHome navigation={this.props.navigation}></BodyHome>
+                {this.state.page === PAGE_TIMKIEM ?<BodyHome navigation={this.props.navigation}/>:<MonthCheap navigation={this.props.navigation}/>}
                 <BottomNavigation setPage={this.setPage.bind(this)}></BottomNavigation>
                 <View style={{ backgroundColor: 'rgba(0,0,0,0.3)', width: wp('100%'), height: hp('10%'), position: 'absolute', top: 0 }}>
                     <Text style={{ lineHeight: hp('10%'), textAlign: 'center', fontSize: hp('4%'), color: '#FFFFFF' }}>

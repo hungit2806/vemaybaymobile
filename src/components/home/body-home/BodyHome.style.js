@@ -242,9 +242,8 @@ export const stylesBodyHome = StyleSheet.create({
     },
     containerModal:{
         width:wp('80%'),
-        height:hp('70%'),
         marginTop:hp('15%'),
-        backgroundColor:'#ffffff',
+        backgroundColor:'white',
         flexDirection: 'column',
     }
 });
